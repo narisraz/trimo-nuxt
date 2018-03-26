@@ -1,16 +1,46 @@
 <template>
   <div id="header">
-    <v-toolbar 
+    
+    <v-navigation-drawer 
+      clipped
+      fixed
+      app
+      v-model="drawer"
+      class="blue-grey lighten-5"
+    >
+      <v-toolbar flat>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title class="title">
+              Catégories
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+      <v-divider></v-divider>
+      <v-list dense>
+        <v-list-tile v-for="menu in menus" :key="menu.name" :href="menu.link">
+          <v-list-tile-action>
+            <v-icon>{{ menu.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ menu.name }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+    <v-toolbar
       v-if="activeSearch"
+      flat
       app 
       fixed
-      clipped-left
+      class="green accent-3"
     >
       <v-text-field
         hide-details
         single-line
         class="mx-3"
-        label="Tapez quelque chose"
+        label="Tapez quelque chose ici"
         append-icon="search"
         prepend-icon="close"
         :append-icon-cb="search"
@@ -19,95 +49,56 @@
       >
       </v-text-field>
     </v-toolbar>
-    <v-toolbar 
-      class="hidden-sm-and-up" 
-      v-else
-      app 
-      fixed
-      clipped-left
-    >
+    <v-toolbar
+        v-else
+        flat
+        app 
+        fixed
+        clipped-left
+        class="green accent-3"
+      >
         <v-toolbar-side-icon
           @click.stop="drawer = !drawer"
         >
         </v-toolbar-side-icon>
-        <v-btn
-          flat
-          icon
-        >
-          <img class="logo-image" src="http://www.creationlogo.org/wp-content/uploads/2017/08/Logo_TV_2015.png" alt="">
-        </v-btn>
+        <v-toolbar-title>Trimo</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn
-          flat
-          icon
-          @click.native="activeSearch = !activeSearch"
-        >
-          <v-icon>search</v-icon>
-        </v-btn>
-        <v-btn
-          flat
-          icon
-        >
-          <v-icon>account_circle</v-icon>
-        </v-btn>
-    </v-toolbar>
-    <v-navigation-drawer 
-      clipped
-      fixed
-      app 
-      class="hidden-sm-and-up" 
-      v-model="drawer"
-    >
-      <v-list dense>
-        <v-list-tile v-for="menu in menus" :key="menu.name" @click="menu.link">
-          <v-list-tile-action>
-            {{ menu.name }}
-          </v-list-tile-action>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-container class="hidden-xs-only">
-      <v-layout row wrap>
-        <v-flex sm2>
-          <a href="/">
-            <v-card flat>
-              <v-card-media class="logo" contain height="48px" src="//www2.grouponcdn.com/layout/assets/grpn_logo_white-9cea72595d.svg">
-              </v-card-media>
-            </v-card>
-          </a>
-        </v-flex>
-        <v-flex sm8>
-          <v-text-field
-            solo
-            single-line
-            name="search-input"
-            class="search-input"
-            placeholder="Votre recherche ici"
-            append-icon="search"
-            append-icon-cb="() => (e1 = !e1)"
-          >
-          </v-text-field>
-        </v-flex>
-        <v-flex sm2>
+        <v-toolbar-items>
           <v-btn
-            round
+            flat
+            icon
+            class="hidden-sm-and-up"
+            @click.native="activeSearch = !activeSearch"
           >
-            <v-icon left>account_circle</v-icon>
-            S'identifier
+            <v-icon>search</v-icon>
           </v-btn>
-        </v-flex>
-      </v-layout>
-      <nav class="text-sm-center py-3">
-        <v-btn
-          flat
-          v-for="menu in menus" 
-          :key="menu.name"
-          class="blue-grey--text darken-3 subheading"
-        >
-          {{ menu.name }}
-        </v-btn>
-      </nav>
-    </v-container>
+          <v-spacer class="hidden-sm-and-up"></v-spacer>
+          <v-btn 
+            flat
+            icon
+            class="hidden-sm-and-up"
+          >
+            <v-icon>account_circle</v-icon>
+          </v-btn>
+          <v-text-field
+            name="name"
+            placeholder="Votre recherche ici"
+            id="id"
+            append-icon="search"
+            persistent-hint
+            class="hidden-sm-and-down"
+            @click.native="activeSearch = !activeSearch"
+          >
+            Search
+          </v-text-field>
+          <v-btn 
+            flat
+            class="hidden-sm-and-down"
+          >
+            Se connecter
+          </v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
   </div>
 </template>
 
@@ -116,11 +107,12 @@
     data () {
       return {
         activeSearch: false,
-        drawer: false,
+        drawer: true,
         menus: [
-          { name: 'Accueil', link: '/' },
-          { name: 'Cadeaux', link: '/cadeaux' },
-          { name: 'Voyages', link: '/voyages' }
+          { name: 'Accueil', link: '/accueil', icon: 'home' },
+          { name: 'Cadeaux', link: '/cadeaux', icon: 'card_giftcard' },
+          { name: 'Voyages', link: '/voyages', icon: 'card_travel' },
+          { name: 'Shopping', link: '/shopping', icon: 'shop' }
         ]
       }
     },
@@ -145,8 +137,5 @@ nav {
 }
 .logo-image {
   width: 30px;
-}
-.logo {
-  background-color: black;
 }
 </style>

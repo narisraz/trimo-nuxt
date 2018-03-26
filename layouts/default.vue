@@ -1,7 +1,11 @@
 <template>
   <v-app class="main" light>
     <Header />
-    <nuxt />
+    <v-content>
+      <v-container fluid>
+        <nuxt />
+      </v-container>
+    </v-content>
   </v-app>
 </template>
 
