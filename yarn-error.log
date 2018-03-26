@@ -1,0 +1,65 @@
+Arguments: 
+  /home/naris/.nvm/versions/node/v8.5.0/bin/node /home/naris/.nvm/versions/node/v8.5.0/bin/yarn install
+
+PATH: 
+  /home/naris/.nvm/versions/node/v8.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+
+Yarn version: 
+  1.2.1
+
+Node version: 
+  8.5.0
+
+Platform: 
+  linux x64
+
+npm manifest: 
+  {
+    "name": "trimo-nuxt",
+    "version": "1.0.0",
+    "description": "Nuxt.js + Vuetify.js project",
+    "author": "<naris.razafimahatratra@gmail.com>",
+    "private": true,
+    "scripts": {
+      "dev": "nuxt",
+      "build": "nuxt build",
+      "start": "nuxt start",
+      "generate": "nuxt generate"
+    },
+    "dependencies": {
+      "nuxt": "^1.0.0",
+      "vuetify": "^1.0.0"
+    },
+    "devDependencies": {
+      "babel-eslint": "^7.2.3",
+      "eslint": "^4.3.0",
+      "eslint-config-standard": "^10.2.1",
+      "eslint-loader": "^1.9.0",
+      "eslint-plugin-html": "^3.1.1",
+      "eslint-plugin-import": "^2.7.0",
+      "eslint-plugin-node": "^5.1.1",
+      "eslint-plugin-promise": "^3.5.0",
+      "eslint-plugin-standard": "^3.0.1",
+      "stylus": "^0.54.5",
+      "stylus-loader": "^3.0.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: https://registry.yarnpkg.com/prettier/-/prettier-1.11.1.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (/home/naris/.nvm/versions/node/v8.5.0/lib/node_modules/yarn/lib/cli.js:123642:19)
+      at Object.onceWrapper (events.js:314:30)
+      at emitNone (events.js:105:13)
+      at ClientRequest.emit (events.js:207:7)
+      at TLSSocket.emitTimeout (_http_client.js:722:34)
+      at Object.onceWrapper (events.js:314:30)
+      at emitNone (events.js:105:13)
+      at TLSSocket.emit (events.js:207:7)
+      at TLSSocket.Socket._onTimeout (net.js:398:8)
+      at ontimeout (timers.js:469:11)
