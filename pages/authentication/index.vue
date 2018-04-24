@@ -1,7 +1,7 @@
 <template>
   <v-layout row wrap>
       <v-flex sm6>
-        <v-card>
+        <v-card :class="{'px-5':$vuetify.breakpoint.smAndUp}" flat>
           <v-card-title primary-title>
             <v-layout column wrap>
               <v-icon large>lock_open</v-icon>
@@ -39,21 +39,21 @@
               <v-btn block color="secondary">Forgot password?</v-btn>
             </v-form>
           </v-card-text>
-          <v-card-text>
-            Or Sign with :
+          <v-container text-xs-center>
+            <div>Or Sign with :</div>
             <v-btn outline color="primary">
               Facebook
               <v-icon right>fa-facebook</v-icon>
             </v-btn>
             <v-btn outline color="primary">
               Google
-              <v-icon right>fa-google</v-icon>
+              <v-icon right>fa-google-plus</v-icon>
             </v-btn>
             <v-btn outline color="primary">
               Twitter
               <v-icon right>fa-twitter</v-icon>
             </v-btn>
-          </v-card-text>
+          </v-container>
         </v-card>
       </v-flex>
       <v-btn

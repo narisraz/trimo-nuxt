@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card :class="{'px-5':$vuetify.breakpoint.smAndUp}" flat>
           <v-card-title primary-title>
             <v-layout column wrap>
               <v-icon large>person_add</v-icon>
