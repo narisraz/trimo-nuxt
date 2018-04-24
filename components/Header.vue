@@ -4,12 +4,32 @@
     <v-toolbar-title>Title</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat to="authentication">Log In</v-btn>
+      <v-btn flat slot="activator" @click="login">Log in</v-btn>
     </v-toolbar-items>
-  </v-toolbar>
+    <v-dialog v-model="$store.state.authDialogOpened" max-width="500px">
+      <Login social-icon-only can-register />
+    </v-dialog>
+  </v-toolbar>  
 </template>
 
 <script>
+  import Login from '@/components/Login'
+
+  export default {
+    data () {
+      return {
+        authDialog: this.$store.state.authDialogOpened
+      }
+    },
+    components: {
+      Login
+    },
+    methods: {
+      login () {
+        this.$store.commit('authDialog', true)
+      }
+    }
+  }
 </script>
 
 <style scoped>
