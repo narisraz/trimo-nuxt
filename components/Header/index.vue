@@ -7,7 +7,14 @@
       <v-btn flat slot="activator" @click="login">Log in</v-btn>
     </v-toolbar-items>
     <v-dialog v-model="$store.state.authDialogOpened" max-width="500px">
-      <Login social-icon-only can-register />
+      <v-card>
+        <v-card-actions>
+          <v-btn icon flat @click.native="$store.commit('authDialog', false)">
+            <v-icon>close</v-icon>
+          </v-btn>
+        </v-card-actions>  
+      </v-card>
+      <Login can-register />
     </v-dialog>
   </v-toolbar>  
 </template>
@@ -16,11 +23,6 @@
   import Login from '@/components/Login'
 
   export default {
-    data () {
-      return {
-        authDialog: this.$store.state.authDialogOpened
-      }
-    },
     components: {
       Login
     },

@@ -1,5 +1,6 @@
 <template>
-  <v-layout row wrap>
+  <div>
+    <v-layout row wrap class="hidden-xs-only">
       <v-flex sm6>
         <Login />
       </v-flex>
@@ -17,6 +18,28 @@
         <Registration />
       </v-flex>
     </v-layout>
+    <v-tabs dark grow centered class="hidden-sm-and-up" color="primary">
+      <v-tabs-slider color="success"></v-tabs-slider>
+      <v-tab href="#tab-login">
+        Login
+      </v-tab>
+      <v-tab href="#tab-register">
+        Register
+      </v-tab>
+      <v-tab-item
+        id="tab-login"
+      >
+        <Login />
+      </v-tab-item>
+      <v-tab-item
+        id="tab-register"
+      >
+        <Registration />
+      </v-tab-item>
+    </v-tabs>
+  </div>
+  
+
 </template>
 
 <script>

@@ -38,7 +38,7 @@
               <v-btn @click="register" v-if="canRegister" to="authentication" block color="accent">Register</v-btn>
             </v-form>
           </v-card-text>
-          <Social :with-name="!socialIconOnly" />
+          <Social />
         </v-card>
 </template>
 
