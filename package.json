@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/font-awesome": "^1.0.3",
+    "axios": "^0.18.0",
     "nuxt": "^1.0.0",
     "vuelidate": "^0.6.2",
     "vuetify": "^1.0.0"

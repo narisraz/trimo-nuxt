@@ -9,12 +9,12 @@
           <v-card-text>
             <v-form>
               <v-text-field
-                name="signInEmail"
-                v-model="signInEmail"
-                label="email address"
-                :error-messages="signInEmailErrors"
-                @input="$v.signInEmail.$touch()"
-                @blur="$v.signInEmail.$touch()"
+                name="userName"
+                v-model="userName"
+                label="User name"
+                :error-messages="userNameErrors"
+                @input="$v.userName.$touch()"
+                @blur="$v.userName.$touch()"
                 required
               ></v-text-field>
               <v-text-field
@@ -44,19 +44,17 @@
 
 <script>
   import { validationMixin } from 'vuelidate'
-  import { required, email } from 'vuelidate/lib/validators'
+  import { required } from 'vuelidate/lib/validators'
   import Social from '@/components/Social'
+  import axios from 'axios'
 
   export default {
     mixins: [validationMixin],
     validations: {
-      signInEmail: { required, email },
+      userName: { required },
       signInPassword: { required }
     },
     props: {
-      socialIconOnly: {
-        type: Boolean
-      },
       canRegister: {
         type: Boolean
       }
@@ -69,7 +67,7 @@
         remember: false,
         hidePassword: true,
         password: 'Password',
-        signInEmail: '',
+        userName: '',
         signInPassword: ''
       }
     },
@@ -80,17 +78,30 @@
         !this.$v.signInPassword.required && errors.push('Password is required')
         return errors
       },
-      signInEmailErrors () {
+      userNameErrors () {
         const errors = []
-        if (!this.$v.signInEmail.$dirty) return errors
-        !this.$v.signInEmail.email && errors.push('Must be valid e-mail')
-        !this.$v.signInEmail.required && errors.push('E-mail is required')
+        if (!this.$v.userName.$dirty) return errors
+        !this.$v.userName.required && errors.push('E-mail is required')
         return errors
       }
     },
     methods: {
       signIn () {
         this.$v.$touch()
+        var bodyFormData = new FormData()
+        bodyFormData.set('name', this.userName)
+        bodyFormData.set('password', this.signInPassword)
+        axios({
+          method: 'post',
+          url: 'http://localhost:8080/login',
+          data: bodyFormData
+        })
+          .then(res => {
+            this.$store.commit('authDialog', res.headers.authorization)
+          })
+          .catch(ex => {
+            console.error(ex)
+          })
       },
       register () {
         this.$store.commit('authDialog', false)
