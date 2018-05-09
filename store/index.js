@@ -5,14 +5,11 @@ const createStore = () => {
     state: {
       backendApiDomain: 'http://localhost:8080/',
       authDialogOpened: false,
-      authToken: ''
+      authCookieName: 'tA'
     },
     mutations: {
       authDialog (state, value) {
         state.authDialogOpened = value
-      },
-      setAuthToken (state, value) {
-        state.authToken = value
       }
     }
   })

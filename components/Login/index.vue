@@ -97,7 +97,24 @@
           data: bodyFormData
         })
           .then(res => {
-            this.$store.commit('authDialog', res.headers.authorization)
+            this.$cookie.set(this.$store.state.authCookieName, res.headers.authorization)
+            this.$store.commit('authDialog', false)
+          })
+          .then(res => {
+            const auth = this.$cookie.get(this.$store.state.authCookieName)
+            axios({
+              method: 'get',
+              url: this.$store.state.backendApiDomain + 'api/private/users/name/' + this.userName,
+              headers: {
+                'Authorization': auth
+              }
+            })
+              .then(res => {
+                this.$cookie.set('t-user', res.data.name)
+              })
+              .catch(ex => {
+                console.error('Error finding user. ' + ex)
+              })
           })
           .catch(ex => {
             console.error(ex)
